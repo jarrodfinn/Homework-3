@@ -6,98 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Password Generator</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 </head>
 
 <body>
     <header>
         <h1>Password Generator</h1>
     </header>
-
     <h2>Generate a Password</h2>
-
-    <textarea id="password" onclick="prompt(How many characters would you like for your password?)"
-        placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
-
-    <button id="generate">Generate Password</button>
+    <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
+    <button id="generate" onclick="myFunction()">Generate Password</button>
     <button id="copy">
         Copy to Clipboard
     </button>
+
     <script>
-
-        // Variables
-        var passwordCharacters = prompt("How many characters would you like for your password?");
-        // if passwordCharacters is >8 & <129, then continue
-
-        var confirmUpper = confirm("Would you like to use Uppercase characters?");
-        // if true, include Uppercase letters
-
-        var confirmLower = confirm("Would you like to use lowercase letters?");
-        // if true, include lowercase numbers
-
-        var confirmSpecial = confirm("Would you like to use Special Characters?");
-        // if true, use Special Characters
-
-        var confirmNumbers = confirm("Would you like to use Numbers?");
-        // if true, use Numbers
-
-        // sorts arrays of lowercase, upppercase, numbers and symbols
         var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
         var num = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
         var sym = ["!", "@", "#", "$", "%", "^", "&", "*", "?", "+"];
 
-        // calls from all 4 arrays
-        var allArrays = [lowerCase, upperCase, num, sym];
+        var passwordCharacters = passwordCharacters;
 
-        // selects from all arrays
-        function selectallArrays(allArrays) {
-            for (var i = 0; i < allArrays.length; i++) {
-                console.log(allArrays);
+        var allArrays = [];
+        
+        var allArrays = upperCase.concat (lowerCase, num, sym);
+
+
+
+        function myFunction() {
+            var passwordCharacters = prompt("How many characters would you like for your password?");
+            console.log(passwordCharacters);
+            if (passwordCharacters > 7 && passwordCharacters < 129) {
+                console.log("password good");
+                var confirmUpper = confirm("Would you like to use Uppercase characters?");
+                console.log(confirmUpper);
+                // if true, include Uppercase letters
+                var confirmLower = confirm("Would you like to use lowercase letters?");
+                console.log(confirmLower);
+                // // if true, include lowercase numbers
+                var confirmSpecial = confirm("Would you like to use Special Characters?");
+                console.log(confirmSpecial);
+                // // if true, use Special Characters
+                var confirmNumbers = confirm("Would you like to use Numbers?");
+                console.log(confirmNumbers);
+                // // if true, use Numbers
+            } else {
+                console.log("password bad");
+                myFunction();
             }
-            console.log("--------");
         }
 
-        selectallArrays(allArrays);
+        // Do a check to make sure at least ONE thing is in the array
+        if (allArrays.length === 0) {
+            myFunction();
+        }
 
-        var isLength = false;
-        var passwordCharacters = {
-            i = > 7, i = < 129,
-        };
-        // var useUppercase = false;
-        // var useLowercase = false;
-        // var useSpecial = false;
-        // var useNumbers = false;
+        var myPassword = "";
+        
+        for (var i = 0; i < passwordCharacters; i++) {
+            // make a random number based on the length of the allArrays
+            var myRandomCharacter =
+                allArrays[Math.floor(Math.random() * allArrays.length)];
+            // get the random element out of the allArrays
+            myPassword = myPassword + myRandomCharacter;
+        }
+// myPassword will be the password to put on the screen
 
-        if (confirmUpper) {
-
-        };
-
-        //  Functions
-        //  prompt-"how many characters would you like your password to be?"
-        //  alert-"would you like to include uppercase letters?"
-        //  alert-"would you like to include lowercase letters?"
-        //  confirm-"are you ready to generate password?"
-        //
-
-        console.log(passwordCharacters);
-        console.log(confirmUpper);
-        console.log(confirmLower);
-        console.log(confirmSpecial);
-        console.log(confirmNumbers);
-
-
-
-
-
-
-
-
-
-
-
+// Put the password in the text box
 
 
     </script>
@@ -110,6 +85,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>
