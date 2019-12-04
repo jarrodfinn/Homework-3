@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Password Generator</title>
 </head>
+
 <body>
     <header>
         <h1>Password Generator</h1>
@@ -17,7 +19,6 @@
         Copy to Clipboard
     </button>
     <script>
-        // defines all variables for password options
         var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
         var num = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -25,49 +26,49 @@
         var passwordCharacters;
         var allArrays = [];
         var myPassword = "";
-        // creates function to collect criteria for password generator
         function myFunction() {
-            passwordCharacters = prompt("How many characters would you like for your password?");
-            // determines password length
-            console.log(passwordCharacters);
+            allArrays = [];
+            // console.log(allArrays);
+            myPassword = "";
+            passwordCharacters = prompt("How many characters would you like for your password? Please choose 8-128 characters.");
             if (passwordCharacters > 7 && passwordCharacters < 129) {
-                // defines password lenght parameters
-                console.log("password good");
+                // console.log("password good");
                 var confirmUpper = confirm("Would you like to use Uppercase characters?");
-                console.log(confirmUpper);
-                // if true, include Uppercase letters
+                if (confirmUpper) {
+                    allArrays.push(upperCase);
+                    // console.log(allArrays);
+                }
                 var confirmLower = confirm("Would you like to use lowercase letters?");
-                console.log(confirmLower);
-                // // if true, include lowercase numbers
+                if (confirmLower) {
+                    allArrays.push(lowerCase);
+                }
+                // console.log(allArrays);
                 var confirmSpecial = confirm("Would you like to use Special Characters?");
-                console.log(confirmSpecial);
-                // // if true, use Special Characters
+                if (confirmSpecial) {
+                    allArrays.push(sym);
+                }
+                // console.log(allArrays);
                 var confirmNumbers = confirm("Would you like to use Numbers?");
-                console.log(confirmNumbers);
-                // // if true, use Numbers
+                if (confirmNumbers) {
+                    allArrays.push(num);
+                }
+                // console.log(allArrays);
             } else {
-                console.log("password bad");
+                // console.log("password bad");
                 myFunction();
             }
-            var submitEl = document.querySelector("#submit");
-            var allArrays = upperCase.concat(lowerCase, num, sym);
-        // Do a check to make sure at least ONE thing is in the array
-        // myPassword will be the password to put on the screen
-        // Put the password in the text box
-            for (var i = 0; i < passwordCharacters; i++) {
-            // make a random number based on the length of the allArrays
-                var myRandomCharacter = allArrays[Math.floor(Math.random() * allArrays.length)];
-            // get the random element out of the allArrays
-                myPassword = myPassword + myRandomCharacter;
-            }
-            console.log("myPassword", myPassword)
+            // console.log("myPassword", myPassword)
             if (allArrays.length === 0) {
                 myFunction();
             } else {
+                for (var i = 0; i < passwordCharacters; i++) {
+                    var arrayChosen = allArrays[Math.floor(Math.random() * allArrays.length)];
+                    var myRandomCharacter = arrayChosen[Math.floor(Math.random() * arrayChosen.length)];
+                    myPassword = myPassword + myRandomCharacter;
+                }
                 document.getElementById("password").value = myPassword;
             }
         }
-        myFunction();
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -79,5 +80,5 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
-</html>
 
+</html>
