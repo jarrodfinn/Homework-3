@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    background-color: cornflowerblue;
+    background-color: rgb(230, 197, 16);
 }
 
 header {
@@ -9,4 +9,10 @@ header {
     size: 0px;
     margin: 50px 450px 30px 450px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#password {
+    border: rgb(88, 17, 121);
+    border-style: dotted;
+
 }
