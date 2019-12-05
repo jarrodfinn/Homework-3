@@ -1,8 +1,12 @@
-* {
-    box-sizing: border-box;
+body {
+    text-align: center;
+    background-color: cornflowerblue;
 }
 
-
 header {
-    text-align: center;
+    border: crimson;
+    border-style: solid;
+    size: 0px;
+    margin: 50px 450px 30px 450px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
